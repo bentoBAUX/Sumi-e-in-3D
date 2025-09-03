@@ -7,5 +7,5 @@ Hi! You have found the source code repository for the shaders I've written for [
 ---
 
 <p align="center">
-  © 2025 Your Name · Licensed under the <a href="LICENSE">MIT License</a>
+  <sub>© 2025 Bennett Poh · Licensed under the <a href="LICENSE">MIT License</a></sub>
 </p>
