@@ -1,4 +1,4 @@
-Shader "bentoBAUX/Sumi-E"
+Shader "bentoBAUX/First Approach"
 {
     Properties
     {
@@ -210,11 +210,14 @@ Shader "bentoBAUX/Sumi-E"
 
                 // Retrieve the primary directional (or main) light with shadow + distance attenuation.
                 Light mainLight = GetMainLight(shadowCoords);
-                
+
+                // Allow use of transparency
                 #ifdef USETRANSPARENT
                 clip(c.a - _AlphaCutoff);
                 #endif
                 half3 emissive;
+
+                // Allow use of emissiveness
                 #ifdef USEEMISSIVE
                 emissive = tex2D(_EmissiveTex, input.uv_Emissive) * _EmissiveColour;
                 #else
@@ -228,8 +231,8 @@ Shader "bentoBAUX/Sumi-E"
                 float3 v = normalize(_WorldSpaceCameraPos - input.fragWorldPos);
 
                 // Derive coordinate system for procedural noise
-                // "Texture Coordinate" node in Blender for sampling in Generated, Normal, UV, Object space
-                half3 noiseCoord = GetTextureSpace(_TextureSpace, n, input.fragLocalPos, input.uv_Albedo);
+                // "Texture Coordinate" node in Blender for sampling in Generated, Normal, UV, Object and World space
+                half3 noiseCoord = GetTextureSpace(_TextureSpace, n, input.fragLocalPos, input.fragWorldPos, input.uv_Albedo);
 
                 float dist; // Voronoi cell distance (unused for now, could drive ink pooling).
                 float3 col; // Raw Voronoi cell color (not used directly here).
